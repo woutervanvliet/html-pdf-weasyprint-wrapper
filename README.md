@@ -2,6 +2,8 @@
 
 A Node.js wrapper for the [weasyprint](http://weasyprint.org/) command line tool. It converts HTML documents to PDFs using WebKit.
 
+[![CodeFactor](https://www.codefactor.io/repository/github/himstar/html-pdf-weasyprint-wrapper/badge)](https://www.codefactor.io/repository/github/himstar/html-pdf-weasyprint-wrapper) 
+
 ## Installation
 
 As this is merely a wrapper, you still require the WeasyPrint binary. First, you need to install the `weasyprint` command line tool on your system. However, the process might be as straightforward as installing it with pip3:
@@ -11,7 +13,7 @@ As this is merely a wrapper, you still require the WeasyPrint binary. First, you
 You can also check [Official Document](https://doc.courtbouillon.org/weasyprint/stable/first_steps.html#installation)  for more details specific to system.
 Finally, to install the node module, use `npm`:
 
-    npm install htmltopdf-weasyprint-wrapper --save
+    npm install htmltopdf-weasyprint --save
 
 Be sure the `weasyprint` command line tool is in your PATH when you're done installing. If you don't want to do this for some reason, you can change
 the `require('weasyprint').command` property to the path to the `weasyprint` command line tool.
