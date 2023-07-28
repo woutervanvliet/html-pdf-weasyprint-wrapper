@@ -4,12 +4,11 @@ A Node.js wrapper for the [weasyprint](http://weasyprint.org/) command line tool
 
 ## Installation
 
-First, you need to install the `weasyprint` command line tool on your system.
+As this is merely a wrapper, you still require the WeasyPrint binary. First, you need to install the `weasyprint` command line tool on your system. However, the process might be as straightforward as installing it with pip3:
 
-The **easiest way** to do this is to
-[download](https://doc.courtbouillon.org/weasyprint/stable/first_steps.html#installation) a prebuilt version for your system. **DO NOT** try to use
-the packages provided by your distribution as they may not be using a patched Qt and have missing features.
+    pip3 install weasyprint -g
 
+You can also check [Official Document](https://doc.courtbouillon.org/weasyprint/stable/first_steps.html#installation)  for more details specific to system.
 Finally, to install the node module, use `npm`:
 
     npm install htmltopdf-weasyprint-wrapper --save
@@ -55,20 +54,18 @@ a stream that you can read from or pipe to wherever you like (e.g. a file, or an
 
 Command line API reference (https://doc.courtbouillon.org/weasyprint/stable/api_reference.html) available to
 weasyprint. All command line options are supported as documented on the page linked above. The
-options are camelCased instead of dashed as in the command line tool. Note that options that do not have values, must be specified as a boolean, e.g. **debugJavascript: true**
+options are camelCased instead of dashed as in the command line tool. Note that options that do not have values, must be specified as a boolean, e.g. **uncompressedPdf: true**
 
 There is also an `output` option that can be used to write the output directly to a filename, instead of returning
 a stream.
 
 ### Debug Options
 
-Apart from the **debugJavascript** option from weasyprint, there is an additional options **debug** and **debugStdOut** which will help you debug rendering issues, by outputting data to the console. **debug** prints and **stderr** messages while **debugStdOut** prints any **stdout** warning messages.
+There is only offical supported debugg option is **debug**. However you can use **debugStdOut** which will help you debug rendering issues, by outputting data to the console. **debug** prints and **stderr** messages while **debugStdOut** prints any **stdout** warning messages.
 
 ## Tests
 
 Run `npm test` and manually check that generated files are like the expected files. The test suit prints the paths of the files that needs to be compared.
-
-**TODO** - Find a way to compare the PDF files automatically.
 
 ## License
 
