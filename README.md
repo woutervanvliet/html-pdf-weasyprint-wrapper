@@ -1,10 +1,11 @@
 # htmlToPdf WeasyPrint Wrapper
 
-This is a lightweight Node.js wrapper for the [weasyprint](http://weasyprint.org/)  command-line tool. It converts HTML documents to PDFs asynchronously using WebKit.
+This is a lightweight Node.js wrapper for the [weasyprint](http://weasyprint.org/) command-line tool. It converts HTML documents to PDFs asynchronously using WebKit.
 
 [![NPM](https://nodei.co/npm/htmltopdf-wasyprint.svg)](https://nodei.co/npm/htmltopdf-wasyprint/)
 
 ## Installation
+
 This is merely a wrapper, so you still need the WeasyPrint binary. First, install the `weasyprint` command line tool on your system. However, the process might be as simple as installing it with pip3.
 
     pip3 install weasyprint -g
@@ -34,12 +35,16 @@ fs.writeFileSync("output.pdf", buffer);
 
 // HTML
 const buffer = await weasyprint("<h1>Hello</h1><p>Dolly!</p>");
+// HTML Unescape
+const buffer = await weasyprint(content, { unescapeHTML: true });
+// The unescapeHTML function in a string performs the opposite action of escape.
+// However, it can increase execution time, so use it only if necessary.
 
 // Stream input and output
 const buffer = await weasyprint("samplefile.html");
 
 // output to a file directly
-const output = await weasyprint("https://apple.com/", { output: "output.pdf" });
+await weasyprint("https://apple.com/", { output: "output.pdf" });
 
 // can be converted directly to binary
 const buffer = await weasyprint("<h1>Test</h1><p>Hello world</p>");
@@ -94,5 +99,4 @@ Run `npm test` and manually check that generated files are like the expected fil
 
 MIT
 
-> **_NOTE:_**  This module is a slightly updated version of this [repo](https://github.com/tdzienniak/node-weasyprint), and has been re-uploaded to npm.
-
+> **_NOTE:_** This module is a slightly updated version of this [repo](https://github.com/tdzienniak/node-weasyprint), and has been re-uploaded to npm.
