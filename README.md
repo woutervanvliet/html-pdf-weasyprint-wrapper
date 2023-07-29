@@ -1,8 +1,8 @@
-# htmltopdf-weasyprint-wrapper
+# htmlToPdf WeasyPrint Wrapper
 
-A Node.js wrapper for the [weasyprint](http://weasyprint.org/) command line tool. It converts HTML documents to PDFs using WebKit.
+Lightweight Node.js wrapper for the [weasyprint](http://weasyprint.org/) command line tool. It converts HTML documents to PDFs using WebKit asynchronsly .
 
-[![CodeFactor](https://www.codefactor.io/repository/github/himstar/html-pdf-weasyprint-wrapper/badge)](https://www.codefactor.io/repository/github/himstar/html-pdf-weasyprint-wrapper) 
+[![CodeFactor](https://www.codefactor.io/repository/github/himstar/html-pdf-weasyprint-wrapper/badge)](https://www.codefactor.io/repository/github/himstar/html-pdf-weasyprint-wrapper)
 
 ## Installation
 
@@ -10,7 +10,7 @@ As this is merely a wrapper, you still require the WeasyPrint binary. First, you
 
     pip3 install weasyprint -g
 
-You can also check [Official Document](https://doc.courtbouillon.org/weasyprint/stable/first_steps.html#installation)  for more details specific to system.
+You can also check [Official Document](https://doc.courtbouillon.org/weasyprint/stable/first_steps.html#installation) for more details specific to system.
 Finally, to install the node module, use `npm`:
 
     npm install htmltopdf-weasyprint --save
@@ -23,30 +23,51 @@ the `require('weasyprint').command` property to the path to the `weasyprint` com
 ### weasyprint(source, [options], [callback]);
 
 ```javascript
-var weasyprint = require("weasyprint");
+const weasyprint = require("htmltopdf-weasyprint");
 
 // URL
-weasyprint("http://google.com/", { optimizeImages: true }).pipe(
-  fs.createWriteStream("output.pdf")
-);
+const buffer = await weasyprint("https://google.com", {
+  optimizeImages: true,
+});
+fs.writeFileSync("output.pdf", buffer);
 // Path can be specified as ./path/output.pdf
+
 // HTML
-weasyprint("<h1>Hey!</h1><p>Hello world</p>").pipe(res);
+const buffer = await weasyprint("<h1>Hello</h1><p>Dolly!</p>");
 
 // Stream input and output
-var stream = weasyprint(fs.createReadStream("samplefile.html"));
+const buffer = await weasyprint("samplefile.html");
 
 // output to a file directly
-weasyprint("https://apple.com/", { output: "output.pdf" });
+const output = await weasyprint("https://apple.com/", { output: "output.pdf" });
+
+// can be converted directly to binary
+const buffer = await weasyprint("<h1>Test</h1><p>Hello world</p>");
+const binary = `${buffer}`;
 
 // Optional callback
-weasyprint(
-  "https://google.com/",
-  { optimizeImages: true },
-  function (err, stream) {
-    // do whatever with the stream
+try {
+  const buffer = await weasyprint("https://apple.com");
+  fs.writeFileSync("apple.pdf", buffer);
+} catch (err) {
+  console.error(err);
+}
+```
+## Example
+```javascript
+const fs = require("fs");
+const weasyprint = require("htmltopdf-weasyprint");
+
+(async () => {
+  try {
+    const buffer = await weasyprint("<h1>Hello</h1><p>Dolly!</p>");
+    fs.writeFileSync("test.pdf", buffer);
+  } catch (err) {
+    console.error(err);
   }
-);
+})();
+
+
 ```
 
 `weasyprint` is just a function, which you call with either a URL or an inline HTML string, and it returns
