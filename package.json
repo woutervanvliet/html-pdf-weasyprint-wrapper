@@ -1,0 +1,28 @@
+{
+  "name": "htmltopdf-weasyprint",
+  "version": "1.0.3",
+  "description": "A Node.js wrapper for the [weasyprint](http://weasyprint.org/) command line tool.  It converts HTML documents to PDFs using WebKit.",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/himstar/html-pdf-weasyprint-wrapper.git"
+  },
+  "keywords": [
+    "htmltopdf",
+    "weasyprint",
+    "npmpdf",
+    "nodepdf"
+  ],
+  "author": "Himanshu Dhiraj Mishra",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/himstar/html-pdf-weasyprint-wrapper/issues"
+  },
+  "homepage": "https://github.com/himstar/html-pdf-weasyprint-wrapper#readme",
+  "dependencies": {
+    "slang": "^0.3.0"
+  }
+}
