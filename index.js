@@ -19,8 +19,12 @@ const weasyprint = async (input, options, callback) => {
   }
 
   let output = options.output;
+  let unescapeHTML = options.unescapeHTML;
+  delete options.unescapeHTML;
   delete options.output;
   delete options.swnOptn;
+
+  console.log("options", options);
 
   // make sure the special keys are last
 
@@ -76,6 +80,17 @@ const weasyprint = async (input, options, callback) => {
     });
   } else {
     var isUrl = /^(https?|file):\/\//.test(input);
+    if (unescapeHTML) {
+      String.prototype.unescapeHTML = function () {
+        var ret = this.replace(/&gt;/g, ">");
+        ret = ret.replace(/&lt;/g, "<");
+        ret = ret.replace(/&quot;/g, '"');
+        ret = ret.replace(/&apos;/g, "'");
+        ret = ret.replace(/&amp;/g, "&");
+        return ret;
+      };
+      input = input.unescapeHTML();
+    }
     if (input) {
       args.push(isUrl ? quote(input) : "-"); // stdin if HTML given directly
     }

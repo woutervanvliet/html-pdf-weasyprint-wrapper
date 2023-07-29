@@ -35,7 +35,6 @@ fs.writeFileSync("output.pdf", buffer);
 
 // HTML
 const buffer = await weasyprint("<h1>Hello</h1><p>Dolly!</p>");
-
 // HTML Unescape
 const buffer = await weasyprint(
   "&lt;h1&gt;Hello&lt;/h1&gt;&lt;p&gt;Dolly!&lt;/p&gt;",
