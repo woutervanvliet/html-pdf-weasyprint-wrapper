@@ -1,26 +1,26 @@
 # htmlToPdf WeasyPrint Wrapper
 
-Lightweight Node.js wrapper for the [weasyprint](http://weasyprint.org/) command line tool. It converts HTML documents to PDFs using WebKit asynchronsly .
+This is a lightweight Node.js wrapper for the [weasyprint](http://weasyprint.org/)  command-line tool. It converts HTML documents to PDFs asynchronously using WebKit.
 
-[![CodeFactor](https://www.codefactor.io/repository/github/himstar/html-pdf-weasyprint-wrapper/badge)](https://www.codefactor.io/repository/github/himstar/html-pdf-weasyprint-wrapper)
+[![NPM](https://nodei.co/npm/htmltopdf-wasyprint.svg)](https://nodei.co/npm/htmltopdf-wasyprint/)
 
 ## Installation
-
-As this is merely a wrapper, you still require the WeasyPrint binary. First, you need to install the `weasyprint` command line tool on your system. However, the process might be as straightforward as installing it with pip3:
+This is merely a wrapper, so you still need the WeasyPrint binary. First, install the `weasyprint` command line tool on your system. However, the process might be as simple as installing it with pip3.
 
     pip3 install weasyprint -g
 
-You can also check [Official Document](https://doc.courtbouillon.org/weasyprint/stable/first_steps.html#installation) for more details specific to system.
+You can also check the [Official Document](https://doc.courtbouillon.org/weasyprint/stable/first_steps.html#installation) for more system-specific details.
+
 Finally, to install the node module, use `npm`:
 
     npm install htmltopdf-weasyprint --save
 
-Be sure the `weasyprint` command line tool is in your PATH when you're done installing. If you don't want to do this for some reason, you can change
+Be sure the `weasyprint` command line tool is in your PATH when you're done installing. If you don't want to do this, change
 the `require('weasyprint').command` property to the path to the `weasyprint` command line tool.
 
 ## Usage
 
-### weasyprint(source, [options], [callback]);
+### Promise weasyprint(source, [options], [callback]);
 
 ```javascript
 const weasyprint = require("htmltopdf-weasyprint");
@@ -53,7 +53,9 @@ try {
   console.error(err);
 }
 ```
+
 ## Example
+
 ```javascript
 const fs = require("fs");
 const weasyprint = require("htmltopdf-weasyprint");
@@ -61,13 +63,11 @@ const weasyprint = require("htmltopdf-weasyprint");
 (async () => {
   try {
     const buffer = await weasyprint("<h1>Hello</h1><p>Dolly!</p>");
-    fs.writeFileSync("test.pdf", buffer);
+    fs.writeFileSync("output.pdf", buffer);
   } catch (err) {
     console.error(err);
   }
 })();
-
-
 ```
 
 `weasyprint` is just a function, which you call with either a URL or an inline HTML string, and it returns
@@ -93,3 +93,6 @@ Run `npm test` and manually check that generated files are like the expected fil
 ## License
 
 MIT
+
+> **_NOTE:_**  This module is a slightly updated version of this [repo](https://github.com/tdzienniak/node-weasyprint), and has been re-uploaded to npm.
+
