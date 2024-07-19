@@ -8,7 +8,6 @@ const quote = (val) =>
 
 const weasyprint = async (input, options, callback) => {
   let child;
-  const keys = [];
   const args = [weasyprint.command];
 
   if (!options) {
@@ -24,8 +23,7 @@ const weasyprint = async (input, options, callback) => {
   delete options.output;
   delete options.swnOptn;
 
-  console.log("options", options);
-
+  const keys = Object.keys(options)
   // make sure the special keys are last
 
   if (!options.debug) {
